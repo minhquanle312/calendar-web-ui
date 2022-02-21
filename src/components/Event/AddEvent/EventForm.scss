@@ -1,0 +1,123 @@
+@import '../../../assets/sass/variables';
+
+.event-form {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.add-event {
+  & input {
+    border: none;
+    font-size: 1.8rem;
+    outline: none;
+
+    &:focus {
+      border-bottom: 2px solid $blue-light-1;
+    }
+  }
+
+  &__header {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    padding: 0.6rem 1.6rem;
+    margin: 0 -2.1rem;
+    font-size: 2.4rem;
+    background-color: $border-color;
+
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    cursor: pointer;
+
+    & span {
+      width: 2rem;
+      height: 2rem;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      transition: all 0.1s ease-in-out;
+
+      &:hover {
+        color: $gray-dark-2;
+        background-color: $gray-dark-1;
+      }
+    }
+  }
+
+  &__title {
+  }
+
+  &__type {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 2.8rem;
+
+    & button {
+      color: $blue-dark;
+      font-size: 1.4rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      background-color: $blue-light-2;
+      padding: 0.6rem 1rem;
+
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+
+      &.active {
+        color: $white-color;
+        background-color: $blue-light;
+      }
+
+      &:hover {
+        background-color: $blue-light-1;
+      }
+    }
+  }
+
+  &__time {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    & div {
+      display: flex;
+      justify-content: end;
+      align-items: center;
+    }
+
+    & input {
+      width: 40px;
+    }
+
+    // & input[type='number']::-webkit-inner-spin-button,
+    // input[type='number']::-webkit-outer-spin-button {
+    //   -webkit-appearance: none;
+    //   margin: 0;
+    // }
+
+    &--minute {
+      margin-left: 6px;
+    }
+  }
+
+  &__duration {
+    width: 20rem;
+  }
+
+  &__description {
+  }
+
+  &__guest {
+  }
+
+  &__meeting-link {
+  }
+
+  &__event-link {
+  }
+}

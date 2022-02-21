@@ -1,0 +1,12 @@
+@import './assets/sass/variables';
+
+.App {
+  width: 100%;
+  min-height: 100vh;
+  background-color: $cyan-light;
+  padding: 0 2.4rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

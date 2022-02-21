@@ -1,0 +1,49 @@
+@import './variables';
+
+@mixin card {
+  border: 2px solid $border-color;
+  border-radius: 6px;
+  background-color: $white-color;
+  box-shadow: 2px 2px 6px rgba($color: #000000, $alpha: 0.1);
+}
+
+@mixin popup-card($min-height: 10rem) {
+  position: absolute;
+
+  width: 32rem;
+  min-height: $min-height;
+  background-color: $white-color;
+  border: 1px solid $border-color;
+  border-radius: 8px;
+  box-shadow: 10px 10px 20px rgba($color: #000000, $alpha: 0.3);
+
+  z-index: 1500;
+
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 0 2rem;
+
+  font-size: 1.4rem;
+  color: $gray-dark-2;
+
+  &.top-left {
+    top: 0;
+    left: 101%;
+  }
+
+  &.top-right {
+    top: 0;
+    right: 101%;
+  }
+
+  &.bottom-left {
+    bottom: 0;
+    left: 101%;
+  }
+
+  &.bottom-right {
+    bottom: 0;
+    right: 101%;
+  }
+}

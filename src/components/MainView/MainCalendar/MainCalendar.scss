@@ -1,0 +1,83 @@
+@import '../../../assets/sass/mixins';
+@import '../../../assets/sass/variables';
+
+.main-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  user-select: none;
+
+  padding: 0 4rem;
+
+  position: sticky;
+  top: 0;
+  background-color: $white-color;
+  z-index: 1000;
+  padding-top: 2rem;
+
+  & > div {
+    display: flex;
+    align-items: center;
+    gap: 2.8rem;
+  }
+
+  & .month-picker {
+    font-size: 2rem;
+  }
+
+  .btn {
+    letter-spacing: 1px;
+    padding: 1rem 2rem;
+    border-radius: 12px;
+    background-color: $blue-dark-2;
+    border: 1px solid $blue-dark-2;
+
+    transition: all 0.1s ease-in-out;
+    cursor: pointer;
+  }
+
+  .btn--today {
+    color: $blue-dark-2;
+    background-color: $white-color;
+
+    &:hover {
+      color: $white-color;
+      background-color: $blue-dark-2;
+    }
+  }
+
+  .btn-view-mode {
+    display: flex;
+    justify-content: center;
+    gap: 1.6rem;
+    color: $white-color;
+    background-color: $blue-dark-2;
+
+    &:hover {
+      color: $blue-dark-2;
+      background-color: $white-color;
+    }
+
+    & pre {
+      transform: rotate(90deg);
+      font-weight: 700;
+    }
+  }
+}
+
+.main-week-day {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  margin: 2rem 0;
+  user-select: none;
+
+  font-size: 1.6rem;
+  color: $gray-dark-1;
+
+  & div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}

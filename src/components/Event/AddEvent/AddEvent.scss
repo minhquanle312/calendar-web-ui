@@ -1,0 +1,23 @@
+@import '../../../assets/sass/variables';
+@import '../../../assets/sass/mixins';
+
+.add-event {
+  @include popup-card(44rem);
+
+  & .btn--save {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    font-size: 1.6rem;
+    padding: 0.8rem 1.2rem;
+    color: $white-color;
+    background-color: $blue-dark-2;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.1s ease-in-out;
+    &:hover {
+      background-color: $blue-dark;
+    }
+  }
+}

@@ -1,0 +1,14 @@
+@import '../../assets/sass/mixins';
+
+.main-view {
+  @include card;
+
+  flex: 3;
+  // padding-top: 2rem;
+
+  max-height: $max-height-layout;
+
+  // overflow-y: auto;
+  // overflow-x: auto;
+  overflow: auto;
+}

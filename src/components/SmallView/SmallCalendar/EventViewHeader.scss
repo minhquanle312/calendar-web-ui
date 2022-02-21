@@ -1,0 +1,64 @@
+@import '../../../assets/sass/variables';
+
+.event-view-header {
+  // margin: 4rem 1.4rem 1.4rem;
+
+  // position: sticky;
+  // top: 0;
+  padding: 2rem 1.4rem 1.4rem;
+  position: sticky;
+  top: -2.6rem;
+  z-index: 1000;
+  background-color: #fff;
+
+  &::after {
+    position: absolute;
+    content: '';
+    top: 0;
+    left: -1px;
+    right: -1px;
+    height: 2px;
+    background-color: $gray-light-1;
+  }
+
+  &__block {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 1rem;
+  }
+
+  &__title {
+    font-size: 1.8rem;
+    color: $blue-dark;
+  }
+
+  &__button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: $white-color;
+    background-color: $blue-dark;
+    border: 2px solid $blue-dark;
+    border-radius: 3rem;
+    padding: 0.6rem 1.2rem;
+
+    transition: all 0.1s ease-in-out;
+    cursor: pointer;
+
+    &:hover {
+      color: $blue-dark;
+      background-color: $white-color;
+    }
+  }
+
+  &__time {
+    font-size: 1.6rem;
+    font-weight: 500;
+    color: $gray-dark-1;
+  }
+}

@@ -1,0 +1,108 @@
+@import '../../../assets/sass/variables';
+
+@mixin gird-layout-container {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0.8rem;
+  font-size: 1.2rem;
+  margin: 1.8rem 3.2rem;
+  color: $gray-dark-1;
+}
+
+@mixin grid-layout-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.month-picker {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  padding-top: 2.4rem;
+
+  font-size: 1.8rem;
+  color: $blue-dark;
+  font-weight: 500;
+  user-select: none;
+
+  // *test
+  padding: 0;
+}
+
+.month-change {
+  width: 2.8rem;
+  height: 2.8rem;
+
+  color: $blue-light;
+  border-radius: 50%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  user-select: none;
+  cursor: pointer;
+}
+
+.month-change:hover {
+  color: $blue-dark;
+  background-color: $hover-color;
+}
+
+.small-month-title {
+}
+
+.week-day {
+  @include gird-layout-container;
+  user-select: none;
+}
+
+.week-day div {
+  @include grid-layout-item;
+}
+
+.small-calendar-days {
+  @include gird-layout-container;
+  user-select: none;
+}
+
+.small-calendar-days div {
+  @include grid-layout-item;
+
+  // background-color: $blue-dark;
+  border-radius: 50%;
+  width: 2.6rem;
+  height: 2.6rem;
+
+  cursor: pointer;
+}
+
+.small-calendar-days div:hover {
+  background-color: $gray-light-1;
+}
+
+.small-calendar-days .main-day {
+  color: $gray-dark-2;
+
+  &.curr-day {
+    color: $white-color;
+    background-color: $blue-light;
+
+    &:hover {
+      background-color: $blue-dark;
+    }
+  }
+
+  &.focus {
+    color: $blue-dark-2;
+    background-color: $blue-light-2;
+
+    &:hover {
+      background-color: $blue-light-1;
+    }
+  }
+}
+
+// .small-calendar-days .main-day

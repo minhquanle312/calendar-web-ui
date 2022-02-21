@@ -1,0 +1,81 @@
+@import '../../../assets/sass/mixins';
+@import '../../../assets/sass/variables';
+
+.main-calendar-days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  height: 540px;
+  user-select: none;
+
+  margin: -1.2px;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+
+  border-top: 1px solid $border-color;
+  border-left: 1px solid $border-color;
+}
+
+.day-container {
+  // height: 90px;
+  position: relative;
+
+  display: flex;
+  text-align: center;
+  justify-content: center;
+
+  border-bottom: 1px solid $border-color;
+  border-right: 1px solid $border-color;
+
+  & .event-quick-view {
+    position: absolute;
+    top: 30%;
+    left: 0;
+    right: 0;
+
+    & p {
+      color: $blue-light;
+      font-size: 1.2rem;
+      padding-top: 0.4rem;
+      text-align: left;
+      margin-left: 0.4rem;
+    }
+  }
+
+  // & div {
+  & .day {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 1.4rem;
+    color: $gray-dark-1;
+
+    width: 2.4rem;
+    height: 2.4rem;
+    border-radius: 50%;
+
+    transform: translateY(2px);
+    transition: all 0.05s linear;
+    cursor: pointer;
+  }
+
+  // & div:hover {
+  & .day:hover {
+    background-color: $gray-light-1;
+    transform: translateY(1px);
+  }
+
+  & .main-day {
+    color: $gray-dark-2;
+
+    &.curr-day {
+      color: $white-color;
+      background-color: $blue-light;
+
+      &:hover {
+        background-color: $blue-dark;
+        transform: translateY(2px);
+      }
+    }
+  }
+}

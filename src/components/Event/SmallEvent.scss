@@ -1,0 +1,62 @@
+@import '../../assets/sass/variables';
+
+.small-event {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 5.2px;
+  font-size: 1.2rem;
+
+  height: 2.2rem;
+  border-radius: 0.2rem;
+
+  margin-bottom: 0.2rem;
+  margin-right: 0.2rem;
+
+  position: relative;
+  cursor: pointer;
+
+  & span {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+  &::after {
+    position: absolute;
+    content: '';
+    top: 0;
+    left: 0;
+    width: 0.28rem;
+    height: 100%;
+
+    border-top-left-radius: 0.2rem;
+    border-bottom-left-radius: 0.2rem;
+  }
+
+  &.type-event {
+    color: $white-color;
+    background-color: $blue-light;
+
+    &::after {
+      background-color: $orange-dark;
+    }
+
+    &:hover {
+      background-color: $blue-dark;
+    }
+  }
+
+  &.type-appointment {
+    color: $blue-light;
+    background-color: $orange-light;
+
+    &::after {
+      background-color: $blue-light;
+    }
+
+    &:hover {
+      background-color: $orange-dark;
+    }
+  }
+}
