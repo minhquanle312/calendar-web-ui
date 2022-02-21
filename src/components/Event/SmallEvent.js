@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import './SmallEvent.scss'
 import EventDetail from './EventDetail'
 import { getOffset } from './../../helpers/helper'
+import Backdrop from './../../UI/Backdrop'
 
 const SmallEvent = (props) => {
   const { title, type } = props.event
@@ -31,11 +32,14 @@ const SmallEvent = (props) => {
     <div className={`small-event type-${type}`} onClick={handleShowEventDetail}>
       <span>{title}</span>
       {showEventDetail && (
-        <EventDetail
-          event={props.event}
-          offSet={offSet}
-          onClose={handleHideEventDetail}
-        />
+        <>
+          <EventDetail
+            event={props.event}
+            offSet={offSet}
+            onClose={handleHideEventDetail}
+          />
+          <Backdrop onClick={handleHideEventDetail} />
+        </>
       )}
     </div>
   )

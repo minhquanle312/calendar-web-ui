@@ -28,7 +28,7 @@ const MainCalendarDays = (props) => {
     setShowAddEvent(true)
   }
 
-  const handleHideAddEvent = () => {
+  const handleHideAddEvent = (e) => {
     setShowAddEvent(false)
   }
 

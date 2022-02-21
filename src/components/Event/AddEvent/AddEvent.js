@@ -1,4 +1,5 @@
 import React, { useContext } from 'react'
+import Backdrop from '../../../UI/Backdrop'
 import EventContext from './../../../contexts/event-context'
 import useHttp from './../../../hooks/use-http'
 import './AddEvent.scss'
@@ -32,7 +33,6 @@ const AddEvent = (props) => {
 
     eventCtx.addItem(createEvent)
     onClose()
-    // props.onAddEvent(createEvent)
   }
 
   const handleEnterEvent = async (event) => {
@@ -62,11 +62,7 @@ const AddEvent = (props) => {
       },
 
       createEvent.bind(null, event)
-      // eventCtx.addItem.bind(null, eventGenerated)
     )
-
-    // !Warning when use this
-    // onClose()
   }
 
   return (
@@ -79,6 +75,7 @@ const AddEvent = (props) => {
         onEnterEvent={handleEnterEvent}
         onSubmit={onClose}
       />
+      <Backdrop onClick={onClose} />
     </div>
   )
 }

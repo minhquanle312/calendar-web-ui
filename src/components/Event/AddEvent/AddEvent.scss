@@ -20,4 +20,16 @@
       background-color: $blue-dark;
     }
   }
+
+  // &::after {
+  //   content: '';
+  //   position: absolute;
+  //   top: 0;
+  //   left: 0;
+  //   width: 100vh;
+  //   height: 100vw;
+  //   background-color: $blue-light;
+
+  //   z-index: 1;
+  // }
 }
