@@ -5,6 +5,7 @@ import './MainCalendar.scss'
 import MainCalendarDays from './MainCalendarDays'
 import { daysShort } from './../../../helpers/helper'
 import TodayContext from './../../../contexts/today-context'
+import useAnimation from './../../../hooks/use-animation'
 
 const MainCalendar = (props) => {
   const {
@@ -19,10 +20,12 @@ const MainCalendar = (props) => {
     handleCurrMonth,
   } = useMonthChange(true)
   const todayCtx = useContext(TodayContext)
+  const { addAnimation, animation } = useAnimation(200)
 
   const handleClickToday = () => {
     todayCtx.setTrue()
     handleCurrMonth()
+    addAnimation('to-top', 200)
   }
 
   return (
@@ -36,6 +39,7 @@ const MainCalendar = (props) => {
             <span
               className="month-change"
               onClick={() => {
+                addAnimation('to-right')
                 if (!isCurrMonth) todayCtx.setFalse()
                 handlePrevMonth()
               }}
@@ -45,6 +49,7 @@ const MainCalendar = (props) => {
             <span
               className="month-change"
               onClick={() => {
+                addAnimation('to-left')
                 if (!isCurrMonth) todayCtx.setFalse()
                 handleNextMonth()
               }}
@@ -66,6 +71,7 @@ const MainCalendar = (props) => {
         ))}
       </div>
       <MainCalendarDays
+        animation={animation}
         month={month}
         year={year}
         isCurrMonth={isCurrMonth}

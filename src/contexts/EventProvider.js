@@ -37,7 +37,6 @@ const EventProvider = (props) => {
 
   const handleRemoveEvent = (id) => {
     setEvents((prevEvents) => prevEvents.filter((event) => event.id !== id))
-    // setEvents((prevEvents) => prevEvents.splice(0))
   }
 
   const eventContext = {

@@ -1,5 +1,6 @@
 @import '../../../assets/sass/mixins';
 @import '../../../assets/sass/variables';
+@import '../../../assets/sass/animations';
 
 .main-calendar-days {
   display: grid;
@@ -13,6 +14,16 @@
 
   border-top: 1px solid $border-color;
   border-left: 1px solid $border-color;
+
+  &.to-right {
+    @include animation-to-right;
+  }
+  &.to-left {
+    @include animation-to-left;
+  }
+  &.to-top {
+    @include animation-to-top;
+  }
 }
 
 .day-container {

@@ -1,4 +1,5 @@
 @import '../../assets/sass/variables';
+@import '../../assets/sass/animations';
 
 .event-list {
   display: flex;
@@ -9,5 +10,9 @@
 
   & > div:last-child {
     margin-bottom: 1rem;
+  }
+
+  &.to-top {
+    @include animation-to-top(10%, 0.5s);
   }
 }

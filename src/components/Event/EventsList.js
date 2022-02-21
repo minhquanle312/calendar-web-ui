@@ -1,13 +1,19 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 
 import './EventsList.scss'
 import Event from './Event'
 import EventContext from '../../contexts/event-context'
+import useAnimation from './../../hooks/use-animation'
 
 const EventsList = (props) => {
   const { viewMode } = props
   const currDate = new Date()
   const eventCtx = useContext(EventContext)
+  const { addAnimation, animation } = useAnimation()
+
+  useEffect(() => {
+    addAnimation('to-top', 500)
+  }, [viewMode])
 
   const eventsListOriginal = eventCtx.items
 
@@ -29,7 +35,7 @@ const EventsList = (props) => {
   })
 
   return (
-    <div className="event-list">
+    <div className={`event-list ${animation}`}>
       {eventsList.map((event) => (
         <Event key={event.id} event={event} />
       ))}

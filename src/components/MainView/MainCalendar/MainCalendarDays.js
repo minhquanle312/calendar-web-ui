@@ -11,8 +11,15 @@ const MainCalendarDays = (props) => {
   const [dayPicked, setDayPick] = useState(null)
 
   const currDate = new Date()
-  const { month, year, isCurrMonth, prevMonthDays, currMonth, nextMonthDays } =
-    props
+  const {
+    month,
+    year,
+    isCurrMonth,
+    prevMonthDays,
+    currMonth,
+    nextMonthDays,
+    animation,
+  } = props
 
   const handleShowAddEvent = (e, item) => {
     if (showAddEvent) {
@@ -36,7 +43,7 @@ const MainCalendarDays = (props) => {
   const eventsGenerated = generateEventDependOnTime(eventCtx.items)
 
   return (
-    <div className="main-calendar-days">
+    <div className={`main-calendar-days ${animation}`}>
       {prevMonthDays.map((item, index) => {
         return (
           <div key={index} className="day-container">

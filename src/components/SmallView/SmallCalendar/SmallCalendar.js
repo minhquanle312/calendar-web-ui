@@ -4,6 +4,7 @@ import './SmallCalendar.scss'
 import useMonthChange from './../../../hooks/use-month-change'
 import { monthsShort, daysShort } from '../../../helpers/helper'
 import TodayContext from './../../../contexts/today-context'
+import useAnimation from './../../../hooks/use-animation'
 
 const SmallCalendar = (props) => {
   const {
@@ -20,12 +21,13 @@ const SmallCalendar = (props) => {
     handleClickDay,
     handleCurrMonth,
   } = useMonthChange()
-
   const todayCtx = useContext(TodayContext)
 
   useEffect(() => {
     if (todayCtx.value) handleCurrMonth()
   }, [todayCtx.value])
+
+  const { addAnimation, animation } = useAnimation(200)
 
   return (
     <>
@@ -34,6 +36,7 @@ const SmallCalendar = (props) => {
           className="month-change"
           onClick={() => {
             if (!isCurrMonth) todayCtx.setFalse()
+            addAnimation('to-right')
             handlePrevMonth()
           }}
         >
@@ -46,6 +49,7 @@ const SmallCalendar = (props) => {
           className="month-change"
           onClick={() => {
             if (!isCurrMonth) todayCtx.setFalse()
+            addAnimation('to-left')
             handleNextMonth()
           }}
         >
@@ -57,7 +61,7 @@ const SmallCalendar = (props) => {
           <div key={index}>{item}</div>
         ))}
       </div>
-      <div className="small-calendar-days">
+      <div className={`small-calendar-days ${animation}`}>
         {prevMonthDays.map((item, index) => {
           return <div key={index}>{item}</div>
         })}

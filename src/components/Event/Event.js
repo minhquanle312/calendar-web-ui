@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faVideo } from '@fortawesome/free-solid-svg-icons'
 
 import './Event.scss'
+import { Link } from 'react-router-dom'
 
 const avatar = require('../../assets/img/avatar.jpg')
 
@@ -30,7 +31,8 @@ const Event = (props) => {
   const endMinute = endTime.getMinutes()
 
   return (
-    <div className={`event type-${type}`}>
+    // <Link to={`/${event.id}`}>
+    <Link to={`/${event.id}`} className={`event type-${type}`}>
       <div className="event__header">
         <div className="event-content">
           <div className="event-content__title">{title}</div>
@@ -43,7 +45,12 @@ const Event = (props) => {
         </div>
         {isMeeting && (
           <div className="event-meeting">
-            <a href={meetingUrl} target="_blank" rel="noreferrer">
+            <a
+              href={meetingUrl}
+              target="_blank"
+              rel="noreferrer"
+              onClick={(e) => e.stopPropagation()}
+            >
               <FontAwesomeIcon icon={faVideo} />
             </a>
           </div>
@@ -52,19 +59,30 @@ const Event = (props) => {
       {guestProfile?.trim().length > 0 && (
         <div className="event-guest">
           <img src={avatar} alt="Guest's Avatar" />
-          <a href={guestProfile} target="_blank" rel="noreferrer">
+          <a
+            href={guestProfile}
+            target="_blank"
+            rel="noreferrer"
+            onClick={(e) => e.stopPropagation()}
+          >
             View Client Profile
           </a>
         </div>
       )}
       {type === 'event' && eventUrl?.trim().length > 0 && (
         <div className="event-link-to-event">
-          <a href={eventUrl} target="_blank" rel="noreferrer">
+          <a
+            href={eventUrl}
+            target="_blank"
+            rel="noreferrer"
+            onClick={(e) => e.stopPropagation()}
+          >
             Go to event
           </a>
         </div>
       )}
-    </div>
+    </Link>
+    // </Link>
   )
 }
 

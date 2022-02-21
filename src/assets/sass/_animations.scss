@@ -1,0 +1,46 @@
+@import './variables';
+
+@mixin animation-to-left($translate-percent: 5%, $duration: 0.2s) {
+  @keyframes to-left {
+    0% {
+      transform: translateX($translate-percent);
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  animation: to-left $duration ease-in-out;
+}
+
+@mixin animation-to-right($translate-percent: 5%, $duration: 0.2s) {
+  @keyframes to-right {
+    0% {
+      transform: translateX(-$translate-percent);
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  animation: to-right $duration ease-in-out;
+}
+
+@mixin animation-to-top($translate-percent: 5%, $duration: 0.2s) {
+  @keyframes to-top {
+    0% {
+      transform: translateY($translate-percent);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  animation: to-top $duration ease-in-out;
+}
