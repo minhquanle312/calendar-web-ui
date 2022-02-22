@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faVideo } from '@fortawesome/free-solid-svg-icons'
 
 import './Event.scss'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 const avatar = require('../../assets/img/avatar.jpg')
 
@@ -30,9 +30,14 @@ const Event = (props) => {
   const endHour = endTime.getHours()
   const endMinute = endTime.getMinutes()
 
+  let navigate = useNavigate()
+  const handleClickNavigate = () => {
+    navigate(`/${event.id}`)
+  }
+
   return (
     // <Link to={`/${event.id}`}>
-    <Link to={`/${event.id}`} className={`event type-${type}`}>
+    <div className={`event type-${type}`} onClick={handleClickNavigate}>
       <div className="event__header">
         <div className="event-content">
           <div className="event-content__title">{title}</div>
@@ -49,7 +54,12 @@ const Event = (props) => {
               href={meetingUrl}
               target="_blank"
               rel="noreferrer"
-              onClick={(e) => e.stopPropagation()}
+              // ?test link
+              onClick={(e) => {
+                e.stopPropagation()
+                // window.location.href = `${meetingUrl}`
+                // window.location.replace(meetingUrl)
+              }}
             >
               <FontAwesomeIcon icon={faVideo} />
             </a>
@@ -63,7 +73,10 @@ const Event = (props) => {
             href={guestProfile}
             target="_blank"
             rel="noreferrer"
-            onClick={(e) => e.stopPropagation()}
+            onClick={(e) => {
+              e.stopPropagation()
+              // window.open(guestProfile)
+            }}
           >
             View Client Profile
           </a>
@@ -81,7 +94,7 @@ const Event = (props) => {
           </a>
         </div>
       )}
-    </Link>
+    </div>
     // </Link>
   )
 }

@@ -1,8 +1,16 @@
 @import '../../../assets/sass/variables';
 @import '../../../assets/sass/mixins';
+@import '../../../assets/sass/animations';
 
 .add-event {
   @include popup-card(44rem);
+
+  &.to-right {
+    @include animation-to-right;
+  }
+  &.to-left {
+    @include animation-to-left;
+  }
 
   & .btn--save {
     position: absolute;

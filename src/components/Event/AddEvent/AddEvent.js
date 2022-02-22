@@ -66,7 +66,14 @@ const AddEvent = (props) => {
   }
 
   return (
-    <div className={`add-event ${offSet}`} onClick={handleClick}>
+    <div
+      className={`add-event ${
+        offSet === 'top-left' || offSet === 'bottom-left'
+          ? `${offSet} to-right`
+          : `${offSet} to-left`
+      }`}
+      onClick={handleClick}
+    >
       <div className="add-event__header">
         <span onClick={onClose}>&times;</span>
       </div>

@@ -3,13 +3,22 @@
 .small-view {
   @include card;
 
-  // flex: 1;
   width: 310px;
   padding-top: 2.4rem;
 
   max-height: $max-height-layout;
 
-  // overflow-y: auto;
-  // overflow-x: hidden;
   overflow: auto;
+}
+
+@media (max-width: 856px) {
+  .small-view {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .small-view {
+    display: block;
+  }
 }

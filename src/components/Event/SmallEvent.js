@@ -13,6 +13,7 @@ const SmallEvent = (props) => {
 
   const handleShowEventDetail = (e) => {
     e.stopPropagation()
+
     if (showEventDetail) {
       setShowEventDetail(false)
       return

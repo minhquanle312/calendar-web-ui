@@ -2,10 +2,16 @@ import React, { useContext } from 'react'
 
 import './EventDetail.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPencil, faTrashCan, faX } from '@fortawesome/free-solid-svg-icons'
+import {
+  faPencil,
+  faTrashCan,
+  faX,
+  faArrowUpRightFromSquare,
+} from '@fortawesome/free-solid-svg-icons'
 import { daysLong, monthsLong } from './../../helpers/helper'
 import EventContext from './../../contexts/event-context'
 import useHttp from '../../hooks/use-http'
+import { Link } from 'react-router-dom'
 const avatar = require('../../assets/img/avatar.jpg')
 
 const EventDetail = (props) => {
@@ -45,8 +51,33 @@ const EventDetail = (props) => {
     })
   }
 
+  const handleMouseEnter = (e) => {
+    const el = e.target.closest('.event-detail__content-to-detail-page')
+    const textSpan = el.querySelector('span')
+    const iconLink = el.querySelector('.icon-link')
+    textSpan.classList.add('active')
+    iconLink.classList.add('active')
+  }
+
+  const handleMouseLeave = (e) => {
+    const el = e.target.closest('.event-detail__content-to-detail-page')
+    const textSpan = el.querySelector('span')
+    const iconLink = el.querySelector('.icon-link')
+    setTimeout(() => {
+      textSpan.classList.remove('active')
+      iconLink.classList.remove('active')
+    }, 1000)
+  }
+
   return (
-    <div className={`event-detail ${offSet}`} onClick={preventPropagation}>
+    <div
+      className={`event-detail ${
+        offSet === 'top-left' || offSet === 'bottom-left'
+          ? `${offSet} to-right`
+          : `${offSet} to-left`
+      }`}
+      onClick={preventPropagation}
+    >
       <div className="event-detail__header">
         <span>
           <FontAwesomeIcon icon={faPencil} />
@@ -75,10 +106,15 @@ const EventDetail = (props) => {
         )}
         {guestProfile?.trim().length > 0 && (
           <div className="event-detail__content-guest">
-            <img src={avatar} alt="Guest's Avatar" />
-            <a href={guestProfile} target="_blank" rel="noreferrer">
+            <div>
+              <img src={avatar} alt="Guest's Avatar" />
+              <a href={guestProfile} target="_blank" rel="noreferrer">
+                View Profile
+              </a>
+            </div>
+            <div className="event-detail__content-guest--text">
               {guestProfile}
-            </a>
+            </div>
           </div>
         )}
         {type === 'event' && eventUrl?.trim().length > 0 && (
@@ -89,6 +125,20 @@ const EventDetail = (props) => {
           </div>
         )}
         <div className="event-detail__content-description">{description}</div>
+        <div className="event-detail__content-type">{type && type}</div>
+        <div className="event-detail__content-to-detail-page">
+          <Link
+            to={`/${id}`}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+          >
+            <span className="text-span">Open in new page</span>
+            <FontAwesomeIcon
+              className="icon-link"
+              icon={faArrowUpRightFromSquare}
+            />
+          </Link>
+        </div>
       </div>
     </div>
   )
