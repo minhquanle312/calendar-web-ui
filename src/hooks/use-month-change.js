@@ -21,9 +21,19 @@ const useMonthChange = (dynamicTotalDays = false) => {
   const isCurrMonth =
     currDate.getMonth() + 1 === month && currDate.getFullYear() === year
 
-  const handlePrevMonth = () => {
-    let newMonth = month - 1
-    let newYear = year
+  const handlePrevMonth = (isPrevYear = false) => {
+    let newYear
+    let newMonth
+    if (isPrevYear) {
+      newMonth = month
+      newYear = year - 1
+      setMonthYear({ month: newMonth, year: newYear })
+      setFocus(undefined)
+      return
+    }
+
+    newMonth = month - 1
+    newYear = year
 
     if (month === 1) {
       newMonth = 12
@@ -34,9 +44,19 @@ const useMonthChange = (dynamicTotalDays = false) => {
     setFocus(undefined)
   }
 
-  const handleNextMonth = () => {
-    let newMonth = month + 1
-    let newYear = year
+  const handleNextMonth = (isNextYear = false) => {
+    let newYear
+    let newMonth
+    if (isNextYear) {
+      newMonth = month
+      newYear = year + 1
+      setMonthYear({ month: newMonth, year: newYear })
+      setFocus(undefined)
+      return
+    }
+
+    newMonth = month + 1
+    newYear = year
 
     if (month === 12) {
       newMonth = 1
@@ -56,8 +76,13 @@ const useMonthChange = (dynamicTotalDays = false) => {
 
   const handleClickDay = (e) => {
     const dayFocused = +e.target.innerText
+    // console.log(dayFocused)
 
     setFocus(dayFocused)
+  }
+
+  const handleParticularMonth = (newMonth, newYear) => {
+    setMonthYear({ month: newMonth, year: newYear })
   }
 
   return {
@@ -73,6 +98,7 @@ const useMonthChange = (dynamicTotalDays = false) => {
     handleNextMonth,
     handleClickDay,
     handleCurrMonth,
+    handleParticularMonth,
   }
 }
 

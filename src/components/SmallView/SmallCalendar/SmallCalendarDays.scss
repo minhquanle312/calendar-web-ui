@@ -1,0 +1,91 @@
+@import '../../../assets/sass/variables';
+@import '../../../assets/sass/animations';
+@import '../../../assets/sass/mixins';
+
+@mixin gird-layout-container {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0.8rem;
+  font-size: 1.2rem;
+  margin: 1.8rem 3.2rem;
+  color: $gray-dark-1;
+}
+
+@mixin grid-layout-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.week-day {
+  @include gird-layout-container;
+  user-select: none;
+}
+
+.week-day div {
+  @include grid-layout-item;
+}
+
+.small-calendar-days {
+  @include gird-layout-container;
+  user-select: none;
+
+  &.scale-up {
+    animation: scale-up 0.2s ease-in-out;
+  }
+
+  &.to-right {
+    @include animation-to-right(5%, 0.2s);
+  }
+  &.to-left {
+    @include animation-to-left(5%, 0.2s);
+  }
+}
+
+.small-calendar-days div {
+  @include grid-layout-item;
+
+  // background-color: $blue-dark;
+  border-radius: 50%;
+  width: 2.6rem;
+  height: 2.6rem;
+
+  cursor: pointer;
+}
+
+.small-calendar-days div:hover {
+  background-color: $gray-light-1;
+}
+
+.small-calendar-days .main-day {
+  color: $gray-dark-2;
+
+  &.curr-day {
+    color: $white-color;
+    background-color: $blue-light;
+
+    &:hover {
+      background-color: $blue-dark;
+    }
+  }
+
+  &.focus {
+    color: $blue-dark-2;
+    background-color: $blue-light-2;
+
+    &:hover {
+      background-color: $blue-light-1;
+    }
+  }
+}
+
+@keyframes scale-up {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

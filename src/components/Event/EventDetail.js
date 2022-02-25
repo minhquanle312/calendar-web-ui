@@ -113,7 +113,9 @@ const EventDetail = (props) => {
               </a>
             </div>
             <div className="event-detail__content-guest--text">
-              {guestProfile}
+              {guestProfile.length < 27
+                ? guestProfile
+                : `${guestProfile.slice(0, 27)}...`}
             </div>
           </div>
         )}

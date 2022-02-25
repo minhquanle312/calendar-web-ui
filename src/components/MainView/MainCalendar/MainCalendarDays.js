@@ -1,8 +1,8 @@
 import React, { useContext, useState } from 'react'
 import { generateEventDependOnTime, getOffset } from '../../../helpers/helper'
+import EventQuickView from '../../Event/SmallEventList/EventQuickView'
 import EventContext from './../../../contexts/event-context'
 import AddEvent from './../../Event/AddEvent/AddEvent'
-import SmallEvent from './../../Event/SmallEvent'
 import './MainCalendarDays.scss'
 
 const MainCalendarDays = (props) => {
@@ -35,7 +35,7 @@ const MainCalendarDays = (props) => {
     setShowAddEvent(true)
   }
 
-  const handleHideAddEvent = (e) => {
+  const handleHideAddEvent = () => {
     setShowAddEvent(false)
   }
 
@@ -65,26 +65,7 @@ const MainCalendarDays = (props) => {
             >
               {item}
             </div>
-            <div className="event-quick-view">
-              {eventsGenerated.map((eventsPerDate) => {
-                const { eventMonth, eventYear, eventDate, events } =
-                  eventsPerDate
-
-                if (
-                  eventDate === item &&
-                  eventMonth + 1 === month &&
-                  eventYear === year
-                )
-                  return events.map((event, index) => (
-                    <div key={event.id}>
-                      {index < 2 && (
-                        <SmallEvent event={event} title={event.title} />
-                      )}
-                      {index === 2 && <p>{events.length - 2} more</p>}
-                    </div>
-                  ))
-              })}
-            </div>
+            <EventQuickView props={{ eventsGenerated, item, month, year }} />
             {showAddEvent && item === dayPicked && (
               <AddEvent
                 onClose={handleHideAddEvent}

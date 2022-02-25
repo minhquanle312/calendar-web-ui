@@ -1,0 +1,42 @@
+@import '../../../assets/sass//mixins';
+@import '../../../assets/sass//variables';
+
+.month-picker {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  padding-top: 2.4rem;
+
+  font-size: 1.8rem;
+  color: $blue-dark;
+  font-weight: 500;
+  user-select: none;
+
+  // *test
+  padding: 0;
+}
+
+.month-change {
+  width: 2.8rem;
+  height: 2.8rem;
+
+  color: $blue-light;
+  border-radius: 50%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  user-select: none;
+  cursor: pointer;
+}
+
+.month-change:hover {
+  color: $blue-dark;
+  background-color: $hover-color;
+}
+
+#small-month-title {
+  cursor: pointer;
+}

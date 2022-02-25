@@ -1,0 +1,29 @@
+@import '../../../assets/sass/mixins';
+@import '../../../assets/sass/variables';
+
+.event-quick-view {
+  position: absolute;
+  top: 30%;
+  left: 0;
+  right: 0;
+
+  & p {
+    color: $blue-light;
+    font-size: 1.2rem;
+    // padding-top: 0.4rem;
+    // padding-left: 0.4rem;
+    padding: 0.4rem;
+    text-align: left;
+    margin-left: 0.4rem;
+    border-radius: 2px;
+
+    cursor: pointer;
+    width: 100%;
+    // margin-right: -4rem;
+    transform: translateX(-5px);
+
+    &:hover {
+      background-color: $gray-light-1;
+    }
+  }
+}

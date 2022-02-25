@@ -1,11 +1,12 @@
 import React, { useContext } from 'react'
-import { monthsLong } from '../../../helpers/helper'
-import useMonthChange from './../../../hooks/use-month-change'
+
 import './MainCalendar.scss'
+import useMonthChange from './../../../hooks/use-month-change'
 import MainCalendarDays from './MainCalendarDays'
 import { daysShort } from './../../../helpers/helper'
 import TodayContext from './../../../contexts/today-context'
 import useAnimation from './../../../hooks/use-animation'
+import MainCalendarHeader from './MainCalendarHeader'
 
 const MainCalendar = (props) => {
   const {
@@ -28,43 +29,26 @@ const MainCalendar = (props) => {
     addAnimation('to-top', 200)
   }
 
+  const handleClickPrevMonth = () => {
+    addAnimation('to-right')
+    if (!isCurrMonth) todayCtx.setFalse()
+    handlePrevMonth()
+  }
+
+  const handleClickNextMonth = () => {
+    addAnimation('to-left')
+    if (!isCurrMonth) todayCtx.setFalse()
+    handleNextMonth()
+  }
+
   return (
     <>
-      <div className="main-header">
-        <div>
-          <button className="btn btn--today" onClick={handleClickToday}>
-            Today
-          </button>
-          <div className="month-picker">
-            <span
-              className="month-change"
-              onClick={() => {
-                addAnimation('to-right')
-                if (!isCurrMonth) todayCtx.setFalse()
-                handlePrevMonth()
-              }}
-            >
-              <pre>{'<'}</pre>
-            </span>
-            <span
-              className="month-change"
-              onClick={() => {
-                addAnimation('to-left')
-                if (!isCurrMonth) todayCtx.setFalse()
-                handleNextMonth()
-              }}
-            >
-              <pre>{'>'}</pre>
-            </span>
-            <span id="main-month-title">
-              {monthsLong[month - 1]} {year}
-            </span>
-          </div>
-        </div>
-        <button className="btn btn-view-mode">
-          Month <pre>{'>'}</pre>
-        </button>
-      </div>
+      <MainCalendarHeader
+        onPrevMonth={handleClickPrevMonth}
+        onNextMonth={handleClickNextMonth}
+        onToday={handleClickToday}
+        props={{ month, year }}
+      />
       <div className="main-week-day">
         {daysShort.map((day, index) => (
           <div key={index}>{day}</div>

@@ -1,10 +1,12 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 
 import './SmallCalendar.scss'
 import useMonthChange from './../../../hooks/use-month-change'
-import { monthsShort, daysShort } from '../../../helpers/helper'
 import TodayContext from './../../../contexts/today-context'
 import useAnimation from './../../../hooks/use-animation'
+import SmallCalendarHeader from './SmallCalendarHeader'
+import SmallCalendarDays from './SmallCalendarDays'
+import SmallCalendarMonth from './MonthSelector/SmallCalendarMonth'
 
 const SmallCalendar = (props) => {
   const {
@@ -20,8 +22,12 @@ const SmallCalendar = (props) => {
     handleNextMonth,
     handleClickDay,
     handleCurrMonth,
+    handleParticularMonth,
   } = useMonthChange()
   const todayCtx = useContext(TodayContext)
+  const [isYearSelector, setIsYearSelector] = useState(false)
+
+  // console.log(focus, month, year)
 
   useEffect(() => {
     if (todayCtx.value) handleCurrMonth()
@@ -29,61 +35,61 @@ const SmallCalendar = (props) => {
 
   const { addAnimation, animation } = useAnimation(200)
 
+  const handleClickMonth = (month, year) => {
+    handleParticularMonth(month + 1, year)
+    setIsYearSelector(false)
+  }
+
+  useEffect(() => {
+    if (!isYearSelector) addAnimation('scale-up')
+    else addAnimation('scale-down')
+  }, [isYearSelector])
+
   return (
     <>
-      <div className="month-picker">
-        <span
-          className="month-change"
-          onClick={() => {
-            if (!isCurrMonth) todayCtx.setFalse()
-            addAnimation('to-right')
-            handlePrevMonth()
+      <SmallCalendarHeader
+        onNextMonth={() => {
+          addAnimation('to-left')
+          isYearSelector ? handleNextMonth(true) : handleNextMonth()
+        }}
+        onPrevMonth={() => {
+          addAnimation('to-right')
+          isYearSelector ? handlePrevMonth(true) : handlePrevMonth()
+        }}
+        onClickHeader={() => {
+          setIsYearSelector((prev) => !prev)
+        }}
+        props={{
+          month,
+          year,
+          currMonth,
+          isCurrMonth,
+          todayCtx,
+          isYearSelector,
+        }}
+      />
+      {!isYearSelector && (
+        <SmallCalendarDays
+          props={{
+            currDate,
+            focus,
+            prevMonthDays,
+            currMonth,
+            nextMonthDays,
+            isCurrMonth,
+            handleClickDay,
+            animation,
           }}
-        >
-          <pre>{'<'}</pre>
-        </span>
-        <span id="small-month-title">
-          {monthsShort[month - 1]} {year}
-        </span>
-        <span
-          className="month-change"
-          onClick={() => {
-            if (!isCurrMonth) todayCtx.setFalse()
-            addAnimation('to-left')
-            handleNextMonth()
-          }}
-        >
-          <pre>{'>'}</pre>
-        </span>
-      </div>
-      <div className="week-day">
-        {daysShort.map((item, index) => (
-          <div key={index}>{item}</div>
-        ))}
-      </div>
-      <div className={`small-calendar-days ${animation}`}>
-        {prevMonthDays.map((item, index) => {
-          return <div key={index}>{item}</div>
-        })}
-        {currMonth.map((item, index) => {
-          return (
-            <div
-              key={index}
-              className={`main-day ${
-                focus === item && currDate.getDate() !== item ? 'focus' : ''
-              } ${
-                currDate.getDate() === item && isCurrMonth ? 'curr-day' : ''
-              }`}
-              onClick={handleClickDay}
-            >
-              {item}
-            </div>
-          )
-        })}
-        {nextMonthDays.map((item, index) => {
-          return <div key={index}>{item}</div>
-        })}
-      </div>
+        />
+      )}
+      {isYearSelector && (
+        <SmallCalendarMonth
+          currDate={currDate}
+          year={year}
+          onParticularMonth={handleClickMonth}
+          animation={animation}
+        />
+      )}
     </>
   )
 }
